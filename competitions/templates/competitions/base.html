@@ -3,14 +3,15 @@
 <head>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Anton|Concert+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton|Russo+One" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
     <div id="dcha">
-            <form action="/" method="post">
-                <label>User: </label><input type="text"><br>
-                <label>Pass: <input type="password"><br>
-                <input type="submit" value="Login" name="Login">
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <label>User: </label><input type="text" name="username"><br>
+                <label>Pass: <input type="password" name="password"><br>
+                <a href="{% url 'login' %}" style="text-decoration: none; color: black;"><input type="submit" value="Login" name="Login"></a>
                 <a href="{% url 'registration' %}" style="text-decoration: none; color: black;"><input type="button" value="Register" name="Register"></a>
             </form>
     </div>

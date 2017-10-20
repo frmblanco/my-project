@@ -22,16 +22,32 @@ def registration(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            q = CustomUserManager()
-            q.create_user(form.email, form.first_name, form.last_name)
+            return redirect('competitions/success.html')
     else:
         form = SignUpForm()
+
     return render(request, 'competitions/registration.html', {'form': form})
 
 
 def reg_success(request):
     return render(request, 'competitions/success.html', {})
+
+
+def login(self, request):
+    if request.method == 'POST':
+        form = self.form_class(request.POST)
+        user = form.save(commit=False)
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
+        user.set_password(password)
+        user.save()
+        login(request, user)
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+
+            if user.is_active:
+                login(request, user)
+                return redirect('/')
+
+    return render(request, 'competitions/login.html', {"form": form})
