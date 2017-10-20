@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
+
+from custom_user.forms import SignUpForm
+from custom_user.models import CustomUserManager
 
 
 def competitions_list(request):
@@ -17,16 +19,17 @@ def competitions_signup(request, pk):
 
 def registration(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('home')
+            q = CustomUserManager()
+            q.create_user(form.email, form.first_name, form.last_name)
     else:
-        form = UserCreationForm()
+        form = SignUpForm()
     return render(request, 'competitions/registration.html', {'form': form})
 
 
