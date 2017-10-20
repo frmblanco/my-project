@@ -1,1 +1,8 @@
-<h1>HOLI</h1>
+{% extends 'competitions/base.html' %}
+
+{% block content %}
+    <h2>{{ comps }}</h2><br>
+    <p>{{ comps.text }}</p>
+    <p><b><i>{{ comps.pub_date }}</i></b></p>
+    <a href="/"><input type="button" value="Volver"></a>
+{% endblock %}

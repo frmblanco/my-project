@@ -1,10 +1,13 @@
 #header {
-    padding: 60px;
-    background-color: #FCA205;
+    padding: 45px;
+    background-color: #336699;
+    font-family: 'Concert One', cursive;
+    font-size: 24px;
 }
 
 #inside{
     padding-left: 15px;
+    padding-right: 20px;
 }
 
 h1 {
@@ -12,5 +15,13 @@ h1 {
 }
 
 h2 {
-    color: #FCA205;
+    color: #336699;
+    font-family: 'Anton', sans-serif;
+}
+
+#dcha {
+    position: fixed;
+    right: 0px;
+    padding: 30px;
+    background-color: #0099CC;
 }
