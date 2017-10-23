@@ -4,7 +4,7 @@
     <h2>Formulario de Login</h2>
     <form action="{% url 'logged' %}" method="POST">
         {% csrf_token %}
-        <label for="username">Username:</label>
+        <label for="username">E-mail:</label>
         <input type="text" name="username" value="" id="username">
         <br>
         <label for="password">Password:</label>
@@ -13,5 +13,5 @@
         <input type="submit" value="Login" />
         <input type="reset" value="Clear">
     </form>
-    <a href="/"><input type="button" value="Volver"></a>
+    <a href="/" style="text-decoration: none;"><input type="button" value="Volver"></a>
 {% endblock %}

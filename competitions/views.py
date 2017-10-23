@@ -15,6 +15,20 @@ def competitions_signup(request, pk):
     return render(request, 'competitions/signup.html', {"comps": comps})
 
 
+def comp_success(request, pk):
+    comps = get_object_or_404(Competitions, pk=pk)
+
+    if request.method == 'POST':
+        user_id = int(request.user.id)
+        user = CustomUser.objects.get(id=user_id)
+        post_id = Competitions.objects.get(pk=pk)
+        file = request.POST['file']
+        entry = CompetitionFile.objects.create(user, post_id, file)
+        entry.save()
+
+    return render(request, 'competitions/comp_success.html', {'comps': comps})
+
+
 def registration(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -48,4 +62,11 @@ def logged(request):
 
 
 def invalid_login(request):
-    return render(request,'competitions/invalid_login.html', {})
+    return render(request, 'competitions/invalid_login.html', {})
+
+
+def logout(request):
+    auth.logout(request)
+    return render(request, 'competitions/logout.html', {})
+
+

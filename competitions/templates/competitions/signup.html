@@ -7,8 +7,9 @@
     {% if user.is_authenticated %}
     <br>
     <p>Para entrar en la competición, por favor adjunte archivo: </p>
-    <form method="POST" action="/">
-    <label>Archivo competición: </label><input type="file">
+    <form action="{% url 'comp_success' comps.id %}" method="POST">
+        {% csrf_token %}
+    <label>Archivo competición: </label><input type="file" name="file" required>
     <br>
         <input type="submit" value="Enviar">
     </form>
