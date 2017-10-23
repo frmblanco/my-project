@@ -9,9 +9,10 @@
     <div id="dcha">
             <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}
-                <label>User: </label><input type="text" name="username"><br>
-                <label>Pass: <input type="password" name="password"><br>
-                <a href="{% url 'login' %}" style="text-decoration: none; color: black;"><input type="submit" value="Login" name="Login"></a>
+                {% if user.is_authenticated %}
+                <p style="color: white; font-weight: strong;">Welcome {{user.username}}!</p>
+                {% endif %}
+                <a href="{% url 'login' %}" style="text-decoration: none; color: black;"><input type="button" value="Login" name="Login"></a>
                 <a href="{% url 'registration' %}" style="text-decoration: none; color: black;"><input type="button" value="Register" name="Register"></a>
             </form>
     </div>

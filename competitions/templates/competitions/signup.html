@@ -4,5 +4,14 @@
     <h2>{{ comps }}</h2><br>
     <p>{{ comps.text }}</p>
     <p><b><i>{{ comps.pub_date }}</i></b></p>
+    {% if user.is_authenticated %}
+    <br>
+    <p>Para entrar en la competición, por favor adjunte archivo: </p>
+    <form method="POST" action="/">
+    <label>Archivo competición: </label><input type="file">
+    <br>
+        <input type="submit" value="Enviar">
+    </form>
+    {% endif %}
     <a href="/"><input type="button" value="Volver"></a>
 {% endblock %}

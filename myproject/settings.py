@@ -47,7 +47,7 @@ AUTH_USER_MODEL = 'custom_user.CustomUser'
 LOGIN_REDIRECT_URL = 'home'
 
 AUTHENTICATION_BACKENDS = (
-   'django.contrib.auth.backends.ModelBackend',
+   'custom_user.backends.CustomUserAuth',
 )
 
 MIDDLEWARE = [
