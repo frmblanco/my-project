@@ -8,7 +8,7 @@ class Competitions(models.Model):
     title = models.CharField(max_length=200)
     text = models.TextField()
     pub_date = models.DateTimeField(blank=True, null=True)
-    attending_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+    attending_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, blank=True)
 
     def publish(self):
         self.pub_date = timezone.now()
