@@ -23,7 +23,10 @@ class CompetitionFile(models.Model):
     competition_id = models.ForeignKey(Competitions, on_delete=models.CASCADE, blank=True)
     user_file = models.FileField(blank=True)
 
-    def __init__(self, attending_user, competition_id, user_file):
+    def create_row(self, attending_user, competition_id, user_file):
         self.attending_user = attending_user
         self.competition_id = competition_id
         self.user_file = user_file
+
+    def __str__(self):
+        return "%s %s" % (self.attending_user, self.competition_id)

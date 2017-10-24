@@ -23,7 +23,8 @@ def comp_success(request, pk):
         user = CustomUser.objects.get(id=user_id)
         post_id = Competitions.objects.get(pk=pk)
         file = request.POST['file']
-        entry = CompetitionFile.objects.create(user, post_id, file)
+        entry = CompetitionFile()
+        entry.create_row(user, post_id, file)
         entry.save()
 
     return render(request, 'competitions/comp_success.html', {'comps': comps})
@@ -57,6 +58,7 @@ def logged(request):
     if user is not None:
         auth.login(request, user)
         return render(request, 'competitions/logged_in.html', {})
+
     else:
         return render(request, 'competitions/invalid_login.html', {})
 
